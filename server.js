@@ -1,6 +1,6 @@
 const express = require('express');
 const { createClient } = require('redis');
-
+const {createServer} = require('redis')
 const app = express();
 // Middleware bắt buộc để Express hiểu được dữ liệu JSON gửi lên từ PUT/POST
 app.use(express.json()); 
