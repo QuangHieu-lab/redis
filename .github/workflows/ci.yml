@@ -1,0 +1,32 @@
+name: Node.js CI Pipeline
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  # CHỈ CÓ 1 JOB DÀNH CHO NODE.JS
+  nodejs-ci:
+    runs-on: ubuntu-latest
+    
+    # Không cần dùng working-directory nữa vì code của bạn đang ở thư mục gốc
+
+    steps:
+      - name: Lấy code từ repository
+        uses: actions/checkout@v4
+
+      - name: Cài đặt môi trường Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Cài đặt thư viện
+        # Lệnh này sẽ đọc file package-lock.json trong ảnh của bạn để cài đặt
+        run: npm ci
+
+      - name: Chạy Test (Nếu có)
+        # Sẽ bỏ qua nếu trong package.json của bạn chưa định nghĩa script "test"
+        run: npm run test --if-present
