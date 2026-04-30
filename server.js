@@ -14,7 +14,7 @@ const redisClient = createClient({
 redisClient.on('error', (err) => console.log('Redis Client Error', err));
 redisClient.on('connect', () => console.log('Connected to Redis successfully!'));
 
-// --- GIẢ LẬP DATABASE ---
+// --- GIẢ LẬP DATABASE ---D
 const fakeDB = {
     "1": { id: "1", name: "John Doe", role: "Software Engineer", projects: ["mylongAI", "Real Estate Platform"] }
 };
